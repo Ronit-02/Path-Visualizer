@@ -1,6 +1,6 @@
 let main = document.querySelector(".main");
-let rowcount = 26;
-let columncount = 68;
+let rowcount = 30;
+let columncount = 79;
 let flag = false;
 let borderflag = false;
 let startflag = false;
@@ -313,31 +313,59 @@ const dropDown = (algo) => {
     document.getElementById('dropbtn').innerHTML = algo
 }
 
-const Solve = () => {
+async function Solve() {
+    
+    let start = Date.now();
+  
     document.getElementById("status").innerHTML = "Solving the maze";
     borderflag = false;
     arr = startpoint.split(',');
     let id = "" + arr[0] + ',' + arr[1];
     const algo = document.getElementById('dropbtn').innerHTML;
+  
     if (algo=="BFS"){
-        bfs(arr[0], arr[1],id);
+      await new Promise(function(resolve) {
+          resolve(bfs(arr[0], arr[1],id));
+      });
     }
     else if(algo=="BFSq"){
-        bfsq(arr[0], arr[1],id);
-    }
+      await new Promise(function(resolve) {
+          resolve(bfsq(arr[0], arr[1],id)); 
+      });
+    }  
     else if(algo=="DFS"){
-        dfs(arr[0], arr[1],id);
+      await new Promise(function(resolve) {
+          resolve(dfs(arr[0], arr[1],id));
+      });
     }
     else if(algo=="Dijkstra"){
-        Dijkstra(arr[0], arr[1],id);
-    }  
+      await new Promise(function(resolve) {
+          resolve(Dijkstra(arr[0], arr[1],id)); 
+      }); 
+    } 
+   
+    // if (algo=="BFS"){
+    //     bfs(arr[0], arr[1],id);
+    // }
+    // else if(algo=="BFSq"){
+    //     bfsq(arr[0], arr[1],id);
+    // }
+    // else if(algo=="DFS"){
+    //     dfs(arr[0], arr[1],id);
+    // }
+    // else if(algo=="Dijkstra"){
+    //     Dijkstra(arr[0], arr[1],id);
+    // }  
 
+    let timeTaken = Date.now() - start
+    console.log("Time taken", timeTaken)
+    document.getElementById('timer').innerHTML = timeTaken + "ms"; 
 }
 
 for (let i = 0; i < rowcount; i++) {
     let row = document.createElement("div");
     row.classList.add("row");
-    main.appendChild(row);
+    main.appendChild(row); 
     for (let j = 0; j < columncount; j++) {
         let block = document.createElement("div");
         block.id = "" + i + "," + j;
@@ -365,13 +393,13 @@ for (let i = 0; i < rowcount; i++) {
                 document.getElementById(startpoint).classList.remove("starterblock");
                 document.getElementById(startpoint).classList.add("movementblock");
                 startpoint = block.id;
-                console.log(block.id, startpoint);
+                console.log(block.id, startpoint); 
             }
             else if (block.id != startpoint && startflag && document.getElementById(block.id).classList.contains("movementblock")) {
                 block.classList.remove("movementblock");
                 block.classList.add("starterblock");
                 block.style.animationPlayState = "running";
-                startpoint = block.id;
+                startpoint = block.id; 
                 console.log(block.id, startpoint);
             }
             else if (block.id != endpoint && endpoint && endflag && document.getElementById(block.id).classList.contains("movementblock")) {
