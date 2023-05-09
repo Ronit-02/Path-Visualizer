@@ -1,144 +1,237 @@
+*,
+::after,
+::before {
+    box-sizing: border-box;
+    margin: 0;
+}
 
-        .starterblock {
-            width: 20px;
-            height: 20px;
-            background-color: yellow;
-            display: inline-block;
-            border-style: solid;
-            border-width:  1px;
-            border-color: black;
-            animation: mystart 1s;
-            animation-play-state: paused;
-            animation-fill-mode: both;
-        }
-        @keyframes mystart {
-            from {
-                background-color: yellow;
-            }
+:root {
+    --primary-color: #34495e;
+    --primary-color-2: #293b4d;
+    --secondary-color: #1abc9c;
+    --secondary-color-2: #18a085;
+    --tertiary-color: #96DED1;
+    --fill-color: #B6D0E2;
+}
 
-            to {
-                background-color: green;
-            }
-        }
+body {
+    background-color: white;
+}
 
-        .solblock {
-            width: 20px;
-            height: 20px;
-            background-color: yellow;
-            border-style: solid;
-            border-width: 1px;
-            border-color: black;
-            display: inline-block;
-            animation: mysol 1s;
-            animation-play-state: paused;
-            animation-fill-mode: both;
-        }
-        @keyframes mysol {
-            from {
-                background-color: yellow;
-            }
+.navbar {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 
-            to {
-                background-color: pink;
-            }
-        }
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
 
-        .enderblock {
-            width: 20px;
-            height: 20px;
-            background-color: yellow;
-            border-style: solid;
-            border-width:  1px;
-            border-color: black;
-            display: inline-block;
-            animation: myend 1s;
-            animation-play-state: paused;
-            animation-fill-mode: both;
-        }
-        @keyframes myend {
-            from {
-                background-color: yellow;
-            }
+#status {
+    color: white;
+    opacity: 0.6;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
 
-            to {
-                background-color: red;
-            }
-        }
+.buttons {
+    padding: 10px 20px;
+    display: flex;
+    gap: 20px;
+}
 
-        .movementblock {
-            width: 20px;
-            height: 20px;
-            background-color: yellow;
-            border-style: solid;
-            border-width:  1px;
-            border-color: black;
-            display: inline-block;
-            animation: mymove 1s;
-            animation-play-state: paused;
-            animation-fill-mode: both;
-        }
-        @keyframes mymove {
-            from {
-                background-color: yellow;
-            }
+.buttons a {
+    cursor: pointer;
+    color: white;
+}
 
-            to {
-                background-color: blue;
-            }
-        }
+.buttons a:hover {
+    color: var(--secondary-color);
+}
 
-        .borderblock {
-            width: 20px;
-            height: 20px;
-            background-color: yellow;
-            border-style: solid;
-            border-width: 1px;
-            border-color: black;
-            display: inline-block;
-            animation: bbanimate 1s;
-            animation-play-state: paused;
-            animation-fill-mode: both;
-        }
-        @keyframes bbanimate {
-            from {
-                background-color: yellow;
-            }
+#dropbtn {
+    background-color: var(--primary-color-2);
+    color: white;
+    padding: 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    width: 100px;
+}
 
-            to {
-                background-color: black;
-            }
-        }
+.dropdown {
+    position: relative;
+}
 
-        .row {
-            width: 100%;
-        }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
 
-        .main {
-            width: 100%;
-            height: 580px;
-            display: inline-block;
-            font-size: 0;
-            vertical-align: top;
-            position: relative;
-            left: 10px;
-        }
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
 
-        body{
-            background-color:whitesmoke;
-        }
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
 
-        .heading{
-            width: 1516px;
-            border-radius: 15px;
-            background-color: plum;
-            display:inline-block;
-            margin-bottom: 8px;
-        }
-        .buttons{
-            height: 40px;
-            width: 1516px;
-            border-radius: 15px;
-            background-color: plum;
-            
-        }
-        
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.visualizer {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.main {
+    width: 100%;
+    height: 620px;
+    display: inline-block;
+    font-size: 0;
+    position: relative;
+}
+
+/* BLOCKS */
+
+.starterblock {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    display: inline-block;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--tertiary-color);
+    animation: mystart 1s;
+    animation-play-state: paused;
+    animation-fill-mode: both;
+}
+
+@keyframes mystart {
+    from {
+        background-color: white;
+    }
+
+    to {
+        background-color: green;
+    }
+}
+
+.solblock {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--tertiary-color);
+    display: inline-block;
+    animation: mysol 1s;
+    animation-play-state: paused;
+    animation-fill-mode: both;
+}
+
+@keyframes mysol {
+    from {
+        background-color: white;
+    }
+
+    to {
+        background-color: pink;
+    }
+}
+
+.enderblock {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--tertiary-color);
+    display: inline-block;
+    animation: myend 1s;
+    animation-play-state: paused;
+    animation-fill-mode: both;
+}
+
+@keyframes myend {
+    from {
+        background-color: white;
+    }
+
+    to {
+        background-color: red;
+    }
+}
+
+.movementblock {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--tertiary-color);
+    display: inline-block;
+    animation: mymove 1s;
+    animation-play-state: paused;
+    animation-fill-mode: both;
+}
+
+@keyframes mymove {
+    from {
+        background-color: white;
+    }
+
+    to {
+        background-color: blue;
+    }
+}
+
+.borderblock {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    display: inline-block;
+    animation: bbanimate 1s;
+    animation-play-state: paused;
+    animation-fill-mode: both;
+}
+
+@keyframes bbanimate {
+    from {
+        background-color: white;
+    }
+
+    to {
+        background-color: black;
+    }
+}
+
+.row {
+    width: 100%;
+}

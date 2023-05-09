@@ -1,38 +1,39 @@
 <!DOCTYPE html>
+<html lang="en"></html>
 <head>
-    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path Visualizer</title>
     <link rel="stylesheet" href="style.css">
-    <script src="js.js" defer></script>
 </head>
 
 <body>
-    <div class="heading">
-        <h1 style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;</h1>
-        <h1 id="Status" style="display:inline-block;">Welcome</h1>
-        <div style="display:inline-block;position:fixed;left:950px;padding: 8px;">
-            <h2 style="display:inline-block;">Choose the Algorithm :</h2>
-            <input type="radio" id="DFS" name="Pathfinding Algorithm" value="DFS">
-            <label for="DFS">DFS</label>
-            <input type="radio" id="BFS" name="Pathfinding Algorithm" value="BFS">
-            <label for="BFS">BFS</label>
-            <input type="radio" id="BFSq" name="Pathfinding Algorithm" value="BFSq">
-            <label for="BFSq">BFSqueue</label>
-            <input type="radio" id="Dijkstra" name="Pathfinding Algorithm" value="Dijkstra">
-            <label for="Dijkstra">Dijkstra</label>
-            
+    <div class="navbar">
+        <h1>Path Visualizer</h1>
+        <div class="navbar-right">
+            <span id="status"></span>
+            <div class="buttons">
+                <a onclick="Border()">Add Border</a>
+                <a onclick="Start_point()">Add Start-Point</a>
+                <a onclick="End_point()">Add End-Point</a>
+            </div>
+            <div class="dropdown">
+                <button id="dropbtn">Algorithms</button>
+                <div class="dropdown-content">
+                    <a onclick="dropDown('BFS')">BFS</a>
+                    <a onclick="dropDown('DFS')">DFS</a>
+                    <a onclick="dropDown('BFSq')">BFS-Queue</a>
+                    <a onclick="dropDown('Dijkstra')">Dijkstra</a>
+                </div>
+            </div>
+            <button class="visualizer" onclick="Solve()">Visualize</button>
         </div>
     </div>
     
     <div class="main"></div>
-    <div class="buttons">
-        <div style="padding: 10px;">
-            <button onclick="Border()">Set Border</button>
-            <button onclick="Start_point()">Set Start-Point</button>
-            <button onclick="End_point()">Set End-Point</button>
-            <button onclick="Solve()" style="position:absolute; left:1440px;">Solve</button>
-        </div>
-    </div>
-    Made by- Ganesh, Sakshsam, Tushar
-</body>
-</html>
 
+    <script src="script.js"></script>
+</body>
+
+</html>
