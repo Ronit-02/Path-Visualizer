@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>Path Visualizer</h1>
+        <div class="navbar-right">
+            <span id="status"></span>
+            <div class="buttons">
+                <a onclick="Border()">Add Border</a>
+                <a onclick="Start_point()">Add Start-Point</a>
+                <a onclick="End_point()">Add End-Point</a>
+            </div>
+            <div class="dropdown">
+                <button id="dropbtn">Algorithms</button>
+                <div class="dropdown-content">
+                    <a onclick="dropDown('BFS')">BFS</a>
+                    <a onclick="dropDown('DFS')">DFS</a>
+                    <a onclick="dropDown('BFSq')">BFS-Queue</a>
+                    <a onclick="dropDown('Dijkstra')">Dijkstra</a>
+                </div>
+            </div>
+            <button class="visualizer" onclick="Solve()">Visualize</button>
+        </div>
+    </div>
+    
+    <div class="main"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
