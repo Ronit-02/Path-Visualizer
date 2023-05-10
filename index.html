@@ -13,29 +13,39 @@
         <h1>Path Visualizer</h1>
         <div class="navbar-right">
           <div id="timer">
-<!--             <span id="minutes">12:</span> -->
-<!--             <span id="seconds">1seconds</span> -->
+            <!-- <span id="minutes">12:</span> -->
+            <!-- <span id="seconds">1seconds</span> -->
           </div>
             <span id="status"></span>
             <div class="buttons">
-                <a onclick="Border()">Add Border</a>
                 <a onclick="Start_point()">Add Start-Point</a>
+                <a onclick="Border()">Add Border</a>
                 <a onclick="End_point()">Add End-Point</a>
             </div>
             <div class="dropdown">
-                <button id="dropbtn">Algorithms</button>
+                <button class="dropbtn" class="dropalgo">Algorithms</button>
                 <div class="dropdown-content">
                     <a onclick="dropDown('BFS')">BFS</a>
                     <a onclick="dropDown('DFS')">DFS</a>
-                    <a onclick="dropDown('BFSq')">BFS-Queue</a>
+                    <a onclick="dropDown('BFS Queue')">BFS Queue</a>
                     <a onclick="dropDown('Dijkstra')">Dijkstra</a>
+                    <a onclick="dropDown('Bidirectional Search')">Bidirectional Search</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Speed</button>
+                <div class="dropdown-content">
+                    <a onclick="dropDown('1x')">1x</a>
+                    <a onclick="dropDown('2x')">2x</a>
                 </div>
             </div>
             <button class="visualizer" onclick="Solve()">Visualize</button>
         </div>
     </div>
     
-    <div class="main"></div>
+    <div class="main">
+        <div class="grid"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
