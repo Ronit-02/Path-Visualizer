@@ -10,7 +10,9 @@ let solved = false;
 let startpoint = '';
 let endpoint = '';
 let visited = {};
+let visited2 = {};
 let path = {};
+let path2 = {};
 
 // Resizing grid according to viewport
 window.addEventListener("resize", () => {
@@ -52,7 +54,7 @@ main.onmouseup = () => {
 // BFS
 async function bfs(i, j, idprev) {
 
-    await new Promise(resolve => setTimeout(resolve, delay));
+    await new Promise(resolve => setTimeout(resolve, delay*2));
 
     let id = "" + i + ',' + j;
     
@@ -67,6 +69,7 @@ async function bfs(i, j, idprev) {
         return 1;
     }
     path[id]=idprev;
+    
     if (document.getElementById(id).classList.contains("endblock")) {
         solved = true;
         document.getElementById("status").innerHTML = "done!";
@@ -78,20 +81,19 @@ async function bfs(i, j, idprev) {
             document.getElementById(next).classList.add("solblock");
             document.getElementById(next).style.animationPlayState = "running";
             next=path[next];
+            await new Promise(resolve => setTimeout(resolve, 10));
         }
         console.log(path);
         return 0;
     }
     document.getElementById(id).style.animationPlayState = "running";
     visited[id] = 1;
-    if (!solved)
+    if (!solved){
         bfs(i, Number(j) + 1,id);
-    if (!solved)
         bfs(i, Number(j) - 1,id);
-    if (!solved)
         bfs(Number(i) + 1, j,id);
-    if (!solved)
         bfs(Number(i) - 1, j,id);
+    }
     if (solved) {
         return 0;       
     } 
@@ -100,9 +102,9 @@ async function bfs(i, j, idprev) {
 
 // DFS
 async function dfs(i, j, idprev) {
-
+    
     await new Promise(resolve => setTimeout(resolve, delay/4));
-
+    
     let id = "" + i + ',' + j;
     
     if (id in visited) {
@@ -127,13 +129,14 @@ async function dfs(i, j, idprev) {
             document.getElementById(next).classList.add("solblock");
             document.getElementById(next).style.animationPlayState = "running";
             next=path[next];
+            await new Promise(resolve => setTimeout(resolve, 10));
         }
         console.log(path);
         return 0;
     }
     document.getElementById(id).style.animationPlayState = "running";
     visited[id] = 1;
-
+    
     await new Promise(function(resolve) {
         resolve(dfs(Number(i)-1,j,id));
     });
@@ -143,11 +146,11 @@ async function dfs(i, j, idprev) {
     });
     await new Promise(function(resolve) {
         if(!solved)
-            resolve(dfs(Number(i)+1,j,id));
+        resolve(dfs(Number(i)+1,j,id));
     });
     await new Promise(function(resolve) {
         if(!solved)
-            resolve(dfs(i,Number(j)-1,id));
+        resolve(dfs(i,Number(j)-1,id));
     });
     if (solved) {
         return 0;
@@ -218,22 +221,22 @@ async function bfsq(i, j, idprev) {
         }
         r=r+1;
         await new Promise(resolve => setTimeout(resolve, delay/4));
-       
     }
-        
-        if (solved==true){
-            let next=id;
-            console.log(path);
-            while(next!=path[next]){
-                
-                document.getElementById(next).classList.remove("movementblock");
-                document.getElementById(next).classList.add("solblock");
-                document.getElementById(next).style.animationPlayState = "running";
-                next=path[next];
-            }
-            console.log(path);
-            return 0;
+    
+    if (solved==true){
+        let next=id;
+        console.log(path);
+        while(next!=path[next]){
+            
+            document.getElementById(next).classList.remove("movementblock");
+            document.getElementById(next).classList.add("solblock");
+            document.getElementById(next).style.animationPlayState = "running";
+            next=path[next];
+            await new Promise(resolve => setTimeout(resolve, 10));
         }
+        console.log(path);
+        return 0;
+    }
     return 1;
 }
 
@@ -306,7 +309,7 @@ async function Dijkstra(i, j, idprev) {
             
         }
         await new Promise(resolve => setTimeout(resolve, delay/4));
-       
+        
     }
     if (solved==true){
         let next=id;
@@ -317,6 +320,7 @@ async function Dijkstra(i, j, idprev) {
             document.getElementById(next).classList.add("solblock");
             document.getElementById(next).style.animationPlayState = "running";
             next=path[next];
+            await new Promise(resolve => setTimeout(resolve, 10));
         }
         console.log(path);
         return 0;
@@ -324,49 +328,76 @@ async function Dijkstra(i, j, idprev) {
 }
 
 async function BiSearch (i, j, stId, x, y, endId) {
-
-    let id = "" + i + ',' + j;
     
-    if (id in visited) {
+    let id1 = "" + i + ',' + j;
+    let id2 = "" + x + ',' + y;
+    
+    if (id1 in visited) {
         return 1;
     }
+    if (id2 in visited2){
+        return 1;
+    }
+
     if (j >= columncount || i >= rowcount || j < 0 || i < 0) {
         return 1;
     }
-    
-    if (document.getElementById(id).classList.contains("borderblock") || document.getElementById(id).classList.contains("solblock")) {
+    if (x >= columncount || y >= rowcount || x < 0 || y < 0) {
         return 1;
     }
-    path[id] = stId;
+    
+    if (document.getElementById(id1).classList.contains("borderblock") || document.getElementById(id1).classList.contains("solblock")) {
+        return 1;
+    }
+    if (document.getElementById(id2).classList.contains("borderblock") || document.getElementById(id2).classList.contains("solblock")) {
+        return 1;
+    }
 
-    if (document.getElementById(id).classList.contains("endblock")) {
+    path[id1] = stId;
+    path2[id2] = endId;
+
+    if (document.getElementById(id1).classList.contains("endblock")) {
         solved = true;
         document.getElementById("status").innerHTML = "done!";
-        let next=id;
+        let next = id1;
         console.log("Path is ",path);
-        while(next!=path[next]){
+        while(next != path[next]){
             
             console.log("next", next)
             console.log("path[next]", path[next])
             document.getElementById(next).classList.remove("movementblock");
             document.getElementById(next).classList.add("solblock");
             document.getElementById(next).style.animationPlayState = "running";
-            next=path[next];
-            await new Promise(resolve => setTimeout(resolve, 20));
+            next = path[next];
         }
-        // console.log(path);
         return 0;
     }
+    if (document.getElementById(id2).classList.contains("endblock")) {
+        solved = true;
+        document.getElementById("status").innerHTML = "done!";
+        let next = id2;
+        console.log("Path is ",path2);
+        while(next != path2[next]){
+            
+            console.log("next", next)
+            console.log("path2[next]", path2[next])
+            document.getElementById(next).classList.remove("movementblock");
+            document.getElementById(next).classList.add("solblock");
+            document.getElementById(next).style.animationPlayState = "running";
+            next = path2[next];
+        }
+        return 0;
+    }
+
     document.getElementById(id).style.animationPlayState = "running";
     visited[id] = 1;
-    if (!solved)
-        BiSearch(i, Number(j) + 1,id);
-    if (!solved)
-        BiSearch(i, Number(j) - 1,id);
-    if (!solved)
-        BiSearch(Number(i) + 1, j,id);
-    if (!solved)
-        BiSearch(Number(i) - 1, j,id);
+
+    if (!solved){
+        BiSearch(i, Number(j) + 1, id1, x, Number(y) + 1, id2);
+        BiSearch(i, Number(j) - 1, id1, x, Number(y) - 1, id2);
+        BiSearch(Number(i) + 1, j, id1, Number(x) + 1, y, id2);
+        BiSearch(Number(i) - 1, j, id1, Number(x) - 1, y, id2);
+    }
     if (solved) {
         return 0;       
     } 
@@ -395,13 +426,13 @@ async function Solve() {
 
     const algo = document.getElementById('dropbtn').textContent;
     const speed = document.getElementById('dropbtn-speed').textContent
+
     if(speed === '1x')
         delay = 80
     else if(speed === '0.5x')
         delay = 120
     else if(speed === '2x')
         delay = 20
-    console.log(algo, speed)
   
     if (algo=="BFS"){
       await new Promise(function(resolve) {
@@ -430,8 +461,10 @@ async function Solve() {
     } 
 
     let timeTaken = Date.now() - start
+    timeTaken = timeTaken/1000
+    timeTaken = timeTaken.toFixed(2)
     console.log("Time taken", timeTaken)
-    document.getElementById('timer').innerHTML = timeTaken + "ms"; 
+    document.getElementById('timer').innerHTML = timeTaken + "s"; 
 
     console.log(columncount)
 }
