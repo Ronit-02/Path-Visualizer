@@ -63,7 +63,7 @@ body {
     color: var(--secondary-color);
 }
 
-.dropbtn {
+#dropbtn {
     background-color: var(--primary-color-2);
     color: white;
     padding: 16px;
@@ -73,10 +73,6 @@ body {
     cursor: pointer;
     margin-right: 10px;
     letter-spacing: 0.5px;
-}
-
-.dropalog {
-    width: 120px;
 }
 
 .dropdown {

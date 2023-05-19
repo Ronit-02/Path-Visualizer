@@ -375,8 +375,11 @@ async function BiSearch (i, j, stId, x, y, endId) {
 }
 
 const dropDown = (text) => {
-    document.getElementsByClassName('dropbtn')[0].innerHTML = text
+    document.getElementById('dropbtn').textContent = text
 }
+// const dropDown2 = (text) => {
+//     document.getElementById('dropbtn').innerHTML = text
+// }
 
 async function Solve() {
     
@@ -391,7 +394,8 @@ async function Solve() {
     end = endpoint.split(',');
     let endId = "" + end[0] + ',' + end[1];
 
-    const algo = document.getElementById('dropbtn').innerHTML;
+    const algo = document.getElementById('dropbtn').textContent;
+    console.log(algo)
   
     if (algo=="BFS"){
       await new Promise(function(resolve) {

@@ -23,7 +23,7 @@
                 <a onclick="End_point()">Add End-Point</a>
             </div>
             <div class="dropdown">
-                <button class="dropbtn" class="dropalgo">Algorithms</button>
+                <button id="dropbtn">Algorithms</button>
                 <div class="dropdown-content">
                     <a onclick="dropDown('BFS')">BFS</a>
                     <a onclick="dropDown('DFS')">DFS</a>
@@ -32,13 +32,13 @@
                     <a onclick="dropDown('Bidirectional Search')">Bidirectional Search</a>
                 </div>
             </div>
-            <div class="dropdown">
-                <button class="dropbtn">Speed</button>
+            <!-- <div class="dropdown">
+                <button id="dropbtn">Speed</button>
                 <div class="dropdown-content">
-                    <a onclick="dropDown('1x')">1x</a>
-                    <a onclick="dropDown('2x')">2x</a>
+                    <a onclick="dropDown2('1x')">1x</a>
+                    <a onclick="dropDown2('2x')">2x</a>
                 </div>
-            </div>
+            </div> -->
             <button class="visualizer" onclick="Solve()">Visualize</button>
         </div>
     </div>
