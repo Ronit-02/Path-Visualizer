@@ -1,6 +1,7 @@
 let main = document.querySelector(".main");
 let rowcount = 24;
 let columncount = Math.floor(window.innerWidth / 27);
+let delay = 0
 let flag = false;
 let borderflag = false;
 let startflag = false;
@@ -51,7 +52,7 @@ main.onmouseup = () => {
 // BFS
 async function bfs(i, j, idprev) {
 
-    await new Promise(resolve => setTimeout(resolve, 20));
+    await new Promise(resolve => setTimeout(resolve, delay));
 
     let id = "" + i + ',' + j;
     
@@ -100,7 +101,7 @@ async function bfs(i, j, idprev) {
 // DFS
 async function dfs(i, j, idprev) {
 
-    await new Promise(resolve => setTimeout(resolve, 10));
+    await new Promise(resolve => setTimeout(resolve, delay/4));
 
     let id = "" + i + ',' + j;
     
@@ -216,7 +217,7 @@ async function bfsq(i, j, idprev) {
             
         }
         r=r+1;
-        await new Promise(resolve => setTimeout(resolve, 0));
+        await new Promise(resolve => setTimeout(resolve, delay/4));
        
     }
         
@@ -304,7 +305,7 @@ async function Dijkstra(i, j, idprev) {
             }
             
         }
-        await new Promise(resolve => setTimeout(resolve, 10));
+        await new Promise(resolve => setTimeout(resolve, delay/4));
        
     }
     if (solved==true){
@@ -323,8 +324,6 @@ async function Dijkstra(i, j, idprev) {
 }
 
 async function BiSearch (i, j, stId, x, y, endId) {
-
-    await new Promise(resolve => setTimeout(resolve, 20));
 
     let id = "" + i + ',' + j;
     
@@ -353,7 +352,7 @@ async function BiSearch (i, j, stId, x, y, endId) {
             document.getElementById(next).classList.add("solblock");
             document.getElementById(next).style.animationPlayState = "running";
             next=path[next];
-            // await new Promise(resolve => setTimeout(resolve, 20));
+            await new Promise(resolve => setTimeout(resolve, 20));
         }
         // console.log(path);
         return 0;
@@ -377,9 +376,9 @@ async function BiSearch (i, j, stId, x, y, endId) {
 const dropDown = (text) => {
     document.getElementById('dropbtn').textContent = text
 }
-// const dropDown2 = (text) => {
-//     document.getElementById('dropbtn').innerHTML = text
-// }
+const dropDown2 = (text) => {
+    document.getElementById('dropbtn-speed').textContent = text
+}
 
 async function Solve() {
     
@@ -395,7 +394,14 @@ async function Solve() {
     let endId = "" + end[0] + ',' + end[1];
 
     const algo = document.getElementById('dropbtn').textContent;
-    console.log(algo)
+    const speed = document.getElementById('dropbtn-speed').textContent
+    if(speed === '1x')
+        delay = 80
+    else if(speed === '0.5x')
+        delay = 120
+    else if(speed === '2x')
+        delay = 20
+    console.log(algo, speed)
   
     if (algo=="BFS"){
       await new Promise(function(resolve) {

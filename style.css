@@ -63,7 +63,7 @@ body {
     color: var(--secondary-color);
 }
 
-#dropbtn {
+#dropbtn, #dropbtn-speed {
     background-color: var(--primary-color-2);
     color: white;
     padding: 16px;
